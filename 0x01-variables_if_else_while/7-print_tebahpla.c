@@ -4,12 +4,14 @@
  *
  * Return: Always 0 (Success)
  */
-int main (void)
+int main(void)
 {
 	char crev = 'z';
-	while (crev >= 'a'){
-	  putchar (crev);
-	  crev--;
+
+	while (crev >= 'a')
+	{
+		putchar (crev);
+		crev--;
 	}
 	putchar ('\n');
 	return (0);
