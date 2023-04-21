@@ -1,13 +1,14 @@
 #include <stdio.h>
+
 /**
  * main-Print the alphabet
  *
- * Return:Always 0 (Success) 
+ * Return:Always 0 (Success)
  */
 int main(void)
 {
 	char c = 'a';
-	
+
 	while (c <= 'z')
 	{
 		putchar(c);
