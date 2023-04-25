@@ -24,10 +24,10 @@ int main(void)
 		bef = aft - bef;
 	}
 
-	bef1 = (bef / 1);
-	bef2 = (bef % l);
-	aft1 = (aft / 1);
-	aft2 = (aft % 1);
+	bef1 = (bef / 1000000000);
+	bef2 = (bef % 1000000000);
+	aft1 = (aft / 1000000000);
+	aft2 = (aft % 1000000000);
 
 	for (i = 93; i < 99; ++i)
 	{
