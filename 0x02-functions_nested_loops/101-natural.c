@@ -2,9 +2,9 @@
 /**
  * main - Lists all the natural numbers below 1024 (excluded)
  *        that are multiples of 3 or 5
- *Return : Always 0.
+ *Return: Always 0.
  */
-int maina(void)
+int main(void)
 {
 	int i, sum = 0;
 
@@ -13,6 +13,6 @@ int maina(void)
 		if ((i % 3) == 0 || (i % 5) == 0)
 			sum += i;
 	}
-	printf ("%d\n" , sum);
+	printf("%d\n", sum);
 	return (0);
 }
