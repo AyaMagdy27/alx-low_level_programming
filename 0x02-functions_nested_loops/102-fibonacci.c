@@ -19,7 +19,7 @@ int main(void)
 
 		fib1 = fib2;
 		fib2 = sum;
-		printf('\n');
+		printf("\n");
 	}
 	return (0);
 }
