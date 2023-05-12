@@ -1,4 +1,5 @@
 #include "main.h"
+int _putchar(char c);
 /**
  * _isalpha - 1 if c is a letter, lowercase or uppercase . 0 for otherwise
  * @c : the character in the ASCII code
