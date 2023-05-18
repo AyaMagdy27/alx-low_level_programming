@@ -51,7 +51,7 @@ void errors(void)
 int main(int argc, char *argv[])
 {
 	char *s1, *s2;
-	int i, len1, len2, len, c, digit1, digit2, *result, j = 0;
+	int i, len1, len2, len, carry, digit1, digit2, *result, j = 0;
 
 	s1 = argv[1], s2 = argv[2];
 	if (argc != 3 || !is_digit(s1) || !is_digit(s2))
@@ -71,12 +71,12 @@ int main(int argc, char *argv[])
 		for (len2 = _strlen(s2) - 1; len2 >= 0; len2--)
 		{
 			digit2 = s2[len2] - '0';
-			c += result[len1 + len2 + 1] + (digit1 * digit2);
-			result[len1 + len2 + 1] = c % 10;
-			c /= 10;
+			carry += result[len1 + len2 + 1] + (digit1 * digit2);
+			result[len1 + len2 + 1] = carry % 10;
+			carry /= 10;
 		}
-		if (c > 0)
-			result[len1 + len2 + 1] += c;
+		if (carry > 0)
+			result[len1 + len2 + 1] += carry;
 	}
 	for (i = 0; i < len - 1; i++)
 	{
