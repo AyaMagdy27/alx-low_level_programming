@@ -10,8 +10,7 @@
  */
 int main(int __attribute__((__unused__)) argc, char *argv[])
 {
-	int num1, num2;
-	char *op;
+	int (*op)(int, int), num1, num2;
 
 	if (argc != 4)
 	{
@@ -19,19 +18,19 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 		exit(98);
 	}
 	num1 = atoi(argv[1]);
-	op = argv[2];
 	num2 = atoi(argv[3]);
-	if (get_op_func(op) == NULL || op[1] != '\0')
+	op = get_op_func(argv[2]);
+
+	if (!op)
 	{
 		printf("Error\n");
 		exit(99);
 	}
-	if ((*op == '/' && num2 == 0) ||
-			(*op == '%' && num2 == 0))
+	if (!num2 && (argv[2][0] == '/' || argv[2][0] == '%'))
 	{
 		printf("Error\n");
 		exit(100);
 	}
-	printf("%d\n", get_op_func(op)(num1, num2));
+	printf("%d\n", op(num1, num2));
 	return (0);
 }
