@@ -23,6 +23,6 @@ int main(int argc, char *argv[])
 		exit(2);
 	}
 	while (bytes--)
-		printf("%02hhx%s", *arr, bytes ? " " : "\n");
+		printf("%02hhx%s", *arr++, bytes ? " " : "\n");
 	return (0);
 }
