@@ -5,7 +5,7 @@
  * @filename: pointer the name of the file to create
  * @text_content: pointer to string to write to the file
  *
- * Retrun: 1 on success, -1 on failure
+ * Retrun: 1 on success, otherwise -1
  */
 int create_file(const char *filename, char *text_content)
 {
