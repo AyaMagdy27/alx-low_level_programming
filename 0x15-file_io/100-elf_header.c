@@ -47,7 +47,7 @@ void print_magic(unsigned char *e_ident)
 {
 	int i;
 
-	printf("Magic: ");
+	printf(" Magic: ");
 	for (i = 0; i < EI_NIDENT; i++)
 	{
 		printf("%02x", e_ident[i]);
@@ -63,7 +63,7 @@ void print_magic(unsigned char *e_ident)
  */
 void print_class(unsigned char *e_ident)
 {
-	printf("Class: ");
+	printf(" Class: ");
 
 	switch (e_ident[EI_CLASS])
 	{
@@ -77,7 +77,7 @@ void print_class(unsigned char *e_ident)
 			printf("ELF64\n");
 			break;
 		default:
-			printf("<unknown:	%x>\n", e_ident[EI_CLASS]);
+			printf("<unknown: %x>\n", e_ident[EI_CLASS]);
 	}
 }
 /**
@@ -86,7 +86,7 @@ void print_class(unsigned char *e_ident)
  */
 void print_data(unsigned char *e_ident)
 {
-	printf("Data:");
+	printf(" Data:");
 	switch (e_ident[EI_DATA])
 	{
 		case ELFDATANONE:
@@ -99,7 +99,7 @@ void print_data(unsigned char *e_ident)
 			printf("2's complement, big endian\n");
 			break;
 		default:
-			 printf("<unknown:	%x>\n", e_ident[EI_DATA]);
+			 printf("<unknown: %x>\n", e_ident[EI_DATA]);
 	}
 }
 /**
@@ -159,7 +159,7 @@ void print_osabi(unsigned char *e_ident)
 			printf("Standalone App\n");
 			break;
 		default:
-			printf("<unknown:	%x>\n", e_ident[EI_OSABI]);
+			printf("<unknown: %x>\n", e_ident[EI_OSABI]);
 	}
 }
 /**
@@ -179,7 +179,7 @@ void print_type(unsigned int e_type, unsigned char *e_ident)
 {
 	if (e_ident[EI_DATA] == ELFDATA2MSB)
 		e_type >>= 8;
-	printf("Type:");
+	printf(" Type: ");
 	switch (e_type)
 	{
 		case ET_NONE:
@@ -198,7 +198,7 @@ void print_type(unsigned int e_type, unsigned char *e_ident)
 			printf("CORE (Core file)\n");
 			break;
 		default:
-			printf("<unknown:	%x>\n", e_type);
+			printf("<unknown: %x>\n", e_type);
 	}
 }
 /**
@@ -208,7 +208,7 @@ void print_type(unsigned int e_type, unsigned char *e_ident)
  */
 void print_entry(unsigned long int e_entry, unsigned char *e_ident)
 {
-	printf("Enter point address:	");
+	printf(" Enter point address: ");
 	if (e_ident[EI_DATA] == ELFDATA2MSB)
 	{
 		e_entry = ((e_entry << 8) & 0xFF00FF00) |
