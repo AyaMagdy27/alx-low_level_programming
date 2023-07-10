@@ -28,10 +28,10 @@ void check_elf(unsigned char *e_ident)
 
 	for (i = 0; i < 4; i++)
 	{
-		if (e_ident[i] != 127 &&
-				e_ident[i] != 'E' &&
-				e_ident[i] != 'L' &&
-				e_ident[i] != 'F')
+		if (e_ident[i] != 127
+				&& e_ident[i] != 'E'
+				&& e_ident[i] != 'L'
+				&& e_ident[i] != 'F')
 		{
 			dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
 			exit(98);
@@ -99,7 +99,7 @@ void print_data(unsigned char *e_ident)
 			printf("2's complement, big endian\n");
 			break;
 		default:
-			 printf("<unknown: %x>\n", e_ident[EI_DATA]);
+			 printf("<unknown: %x>\n", e_ident[EI_CLASS]);
 	}
 }
 /**
@@ -112,7 +112,7 @@ void print_version(unsigned char *e_ident)
 	switch (e_ident[EI_VERSION])
 	{
 		case EV_CURRENT:
-			printf("(current)\n");
+			printf(" (current)\n");
 			break;
 		default:
 			printf("\n");
