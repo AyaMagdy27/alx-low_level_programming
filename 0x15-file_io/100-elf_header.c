@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "main.h"
 
 void check_elf(unsigned char *e_ident);
 void print_magic(unsigned char *e_ident);
@@ -24,20 +25,16 @@ void close_elf(int elf);
  */
 void check_elf(unsigned char *e_ident)
 {
-	int i;
-
-	for (i = 0; i < 4; i++)
+	if (e_ident[0] != 127 &&
+			e_ident[1] != 'E' &&
+			e_ident[2] != 'L' &&
+			e_ident[3] != 'F')
 	{
-		if (e_ident[i] != 127
-				&& e_ident[i] != 'E'
-				&& e_ident[i] != 'L'
-				&& e_ident[i] != 'F')
-		{
-			dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
-			exit(98);
-		}
+		dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
+		exit(98);
 	}
 }
+
 /**
  * print_magic - Prints the magic numbers of an ELF header
  * @e_ident: A pointer to an array containing the ELF magic numbers
@@ -63,7 +60,7 @@ void print_magic(unsigned char *e_ident)
  */
 void print_class(unsigned char *e_ident)
 {
-	printf("  Class:                              ");
+	printf("  Class:                             ");
 
 	switch (e_ident[EI_CLASS])
 	{
