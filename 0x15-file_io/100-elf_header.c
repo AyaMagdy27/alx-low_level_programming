@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <elf.h>
+#include "main.h"
 
 /**
  * print_magic - Prints the magic numbers of an ELF header
@@ -28,7 +29,7 @@ void print_class(Elf64_Ehdr h)
 {
 	printf("  Class:                             ");
 
-	switch (h.e_indet[EI_CLASS])
+	switch (h.e_ident[EI_CLASS])
 	{
 		case ELFCLASS64:
 			printf("ELF64");
@@ -214,19 +215,23 @@ void print_entry(Elf64_Ehdr h)
  * argv: argument vector
  * Return: 1 on Success, 0 on failure
  */
-int main(int argc, char *argv)
+int main(int argc, char **argv)
 {
 	int fd;
 	Elf64_Ehdr h;
 	ssize_t b;
 
 	if (argc != 2)
-		dprintf(STDERR_FILENO, "Usage: elf_header elf_filename\n"), exit 98;
+		dprintf(STDERR_FILENO, "Usage: elf_header elf_filename\n"), exit (98);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]), exit(98);
+		dprintf(STDERR_FILENO, "Can't open file: %s\n", argv[1]), exit(98);
+	
 	b = read(fd, &h, sizeof(h));
-	if (h.e_indent[0] == 0x7f && h.e_indent[1] == 'E' && h.e_indent[2] == 'L' && h.e_indent[3] == 'F')
+	if (b < 1 || b != sizeof(h))
+		dprintf(STDERR_FILENO, "Can't read file: %s\n", argv[1]), exit(98);
+
+	if (h.e_ident[0] == 0x7f && h.e_ident[1] == 'E' && h.e_ident[2] == 'L' && h.e_ident[3] == 'F')
 	{
 		printf("ELF Header:\n");
 	}
